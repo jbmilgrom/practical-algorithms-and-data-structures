@@ -16,3 +16,11 @@ def sumIterativeRecursive(n):
 
 print "sumIterativeRecursive(3)"
 print sumIterativeRecursive(3)
+
+def sumRecursive(n):
+  if (n == 0):
+    return n
+  return n + sumRecursive(n -1)
+
+print "sumRecursive(3)"
+print sumRecursive(3)
