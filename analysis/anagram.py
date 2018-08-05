@@ -4,20 +4,20 @@
 #   2. if not, return false
 #   3. else, checkoff letter from s2
 #   4. return tru
-def isAnagramIterative(s1, s2):
+def is_anagram_checking_off(s1, s2):
   if len(s1) != len(s2):
     return False
 
-  checkedOff = list(s2)
+  checked_off = list(s2)
 
   for char1 in s1:
-    for i, char2 in enumerate(checkedOff):
+    for i, char2 in enumerate(checked_off):
       if char1 == char2:
-        checkedOff[i] = None
+        checked_off[i] = None
         break
     else: # no break
       return False
   return True
       
-print isAnagramIterative('hello', 'ellho')
-print isAnagramIterative('hello', 'elvho')
+print is_anagram_checking_off('hello', 'ellho')
+print is_anagram_checking_off('hello', 'elvho')
