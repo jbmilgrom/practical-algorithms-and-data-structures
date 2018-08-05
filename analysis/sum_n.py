@@ -24,3 +24,14 @@ def sumRecursive(n):
 
 print "sumRecursive(3)"
 print sumRecursive(3)
+
+# n == 3; 3/2 => 1.5 * 4 => 6
+# n == 4: 4/2 => 2 * 5 => 10 
+def sumNConstantTime(n):
+  return (n+1) * n//2
+
+template = '{}({}): {:5d}'
+for i in range(1, 10):
+  print template.format('sumNConstantTime', i, sumNConstantTime(i))
+
+  
