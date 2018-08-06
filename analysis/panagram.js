@@ -13,12 +13,17 @@
  *    Mark letter in dictionary
  *    Iterate through dictionary
  *    Return false if false encountered, true otherwise
+ * 4. Looking back
+ *    Capture all used characters in a dictionary
+ *    Check that every character is used against the 26 letter alphabet
+ *    runtime: n + 26, where n is the number of characters in the string
  * @param {string} string 
  * @returns {boolean}
  */
 const isPanagram = string => {
   const usedCharacters = {};
 
+  // use a hashmap to optimize for reads in the below ALPHABET.every iteration
   for (let i = 0; i < string.length; i++) {
     usedCharacters[string[i]] = true;
   }
