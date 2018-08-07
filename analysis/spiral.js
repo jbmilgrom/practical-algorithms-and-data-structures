@@ -1,3 +1,5 @@
+const DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1, 0] /* S */];
+
 /**
  * 
  * @param {number} size 
@@ -28,11 +30,22 @@ const makeGetNextCoordintes = (size, directions) => {
   }
 }
 
+/**
+ * 
+ * @param {Array<Array<number>>} matrix
+ * @returns {string} 
+ */
 const print = matrix => matrix.map(row => row.join(' ')).join('\n');
 
-const DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1, 0] /* S */];
+/**
+ * GENERIC HELPERS
+ */
 
 const addTuples = (t1, t2) => t1.map((val, i) => val + t2[i]);
 const generateMatrixOfSize = s => Array.from(Array(s)).map(() => Array.from(Array(s)));
+
+/**
+ * TEST
+ */
 
 console.log('spiral \n' + print(spiral(3)));
