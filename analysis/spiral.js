@@ -28,9 +28,11 @@ const makeGetNextCoordintes = (size, directions) => {
   }
 }
 
+const print = matrix => matrix.map(row => row.join(' ')).join('\n');
+
 const DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1, 0] /* S */];
 
 const addTuples = (t1, t2) => t1.map((val, i) => val + t2[i]);
 const generateMatrixOfSize = s => Array.from(Array(s)).map(() => Array.from(Array(s)));
 
-console.log('spiral', spiral(3));
+console.log('spiral \n' + print(spiral(3)));
