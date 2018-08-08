@@ -4,6 +4,12 @@ const DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1, 0] /* 
  * Takes a number n and builds an n x n matrix with n * n numbers filled in with a spiral pattern
  * @param {number} size 
  * @return {Array<Array<number>>} 
+ * @example 
+ *    print(spiral(3));
+ * 
+ *    1 2 3
+ *    8 9 4
+ *    7 6 5
  */
 const spiral = size => {
   let coord = [0, 0];
