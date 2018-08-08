@@ -12,11 +12,11 @@ const SPIRAL_DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1,
  *    7 6 5
  */
 const spiral = size => {
-  let coord = [0, 0];
   const matrix = generateMatrixOfSize(size);
   const shouldTurn = ({0:x, 1:y}) => x < 0 || y < 0 || x === size || y === size || matrix[x][y] !== undefined;
   const compass = makeCompass(SPIRAL_DIRECTIONS, shouldTurn);
   const entries = size * size;
+  let coord = [0, 0];
   for (let entry = 1; entry <= entries; entry++) {
     matrix[coord[0]][coord[1]] = entry;
     coord = compass(coord);
