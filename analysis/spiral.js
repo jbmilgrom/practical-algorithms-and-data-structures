@@ -1,4 +1,4 @@
-const DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1, 0] /* S */];
+const SPIRAL_DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1, 0] /* S */];
 
 /**
  * Takes a number n and builds an n x n matrix with n * n numbers filled in with a spiral pattern
@@ -14,7 +14,7 @@ const DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1, 0] /* 
 const spiral = size => {
   let coord = [0, 0];
   const matrix = generateMatrixOfSize(size);
-  const compass = makeCompass(size, DIRECTIONS);
+  const compass = makeCompass(size, SPIRAL_DIRECTIONS);
   const entries = size * size;
   for (let entry = 1; entry <= entries; entry++) {
     matrix[coord[0]][coord[1]] = entry;
