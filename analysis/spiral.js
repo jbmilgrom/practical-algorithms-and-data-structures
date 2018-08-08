@@ -14,7 +14,7 @@ const SPIRAL_DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1,
 const spiral = size => {
   let coord = [0, 0];
   const matrix = generateMatrixOfSize(size);
-  const shouldTurn = (x, y) => x < 0 || y < 0 || x === size || y === size || matrix[x][y] !== undefined;
+  const shouldTurn = ({0:x, 1:y}) => x < 0 || y < 0 || x === size || y === size || matrix[x][y] !== undefined;
   const compass = makeCompass(SPIRAL_DIRECTIONS, shouldTurn);
   const entries = size * size;
   for (let entry = 1; entry <= entries; entry++) {
@@ -41,7 +41,7 @@ const makeCompass = (directions, shouldTurn) => {
   let dir = 0;
   return (coord) => {
     let next = addTuples(coord, directions[dir]);
-    if (shouldTurn(next[0], next[1])) {
+    if (shouldTurn(next)) {
       dir = (dir + 1) % directions.length;
       next = addTuples(coord, directions[dir]);
     }
