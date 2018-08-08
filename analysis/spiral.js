@@ -14,7 +14,7 @@ const SPIRAL_DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1,
 const spiral = size => {
   let coord = [0, 0];
   const matrix = generateMatrixOfSize(size);
-  const compass = makeCompass(size, SPIRAL_DIRECTIONS);
+  const compass = makeCompass(SPIRAL_DIRECTIONS, i => i < 0 || i === size);
   const entries = size * size;
   for (let entry = 1; entry <= entries; entry++) {
     matrix[coord[0]][coord[1]] = entry;
@@ -32,13 +32,12 @@ const printFIFO = matrix => matrix.map(row => row.join(' ')).join('\n');
 
 /**
  * 
- * @param {number} boundary 
  * @param {Array<Tuple>} directions
+ * @param {(i: num) => boolean}
  * @private 
  */
-const makeCompass = (boundary, directions) => {
+const makeCompass = (directions, isOutOfBounds) => {
   let dir = 0;
-  const isOutOfBounds = i => i < 0 || i === boundary;
   return (matrix, coord) => {
     let next = addTuples(coord, directions[dir]);
     if (isOutOfBounds(next[0]) || isOutOfBounds(next[1]) || matrix[next[0]][next[1]] !== undefined) {
