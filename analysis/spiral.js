@@ -38,7 +38,7 @@ const print = matrix => matrix.map(row => row.join(' ')).join('\n');
  */
 const makeCompass = (boundary, directions) => {
   let dir = 0;
-  const isOutOfBounds = m => m < 0 || m === boundary;
+  const isOutOfBounds = i => i < 0 || i === boundary;
   return (matrix, coord) => {
     let next = addTuples(coord, directions[dir]);
     if (isOutOfBounds(next[0]) || isOutOfBounds(next[1]) || matrix[next[0]][next[1]] !== undefined) {
