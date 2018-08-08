@@ -33,7 +33,7 @@ const printFIFO = matrix => matrix.map(row => row.join(' ')).join('\n');
 /**
  * 
  * @param {Array<Tuple>} directions
- * @param {(i: num) => boolean}
+ * @param {(i: num) => boolean} isOutOfBounds
  * @private 
  */
 const makeCompass = (directions, isOutOfBounds) => {
