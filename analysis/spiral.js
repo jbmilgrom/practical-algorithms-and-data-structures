@@ -60,5 +60,29 @@ const generateMatrixOfSize = s => Array.from(Array(s)).map(() => Array.from(Arra
  * TEST
  */
 
-console.log('spiral \n' + printFIFO(spiral(3)));
-console.log('spiral \n' + printFIFO(spiral(4)));
+console.log('\nspiral\n' + printFIFO(spiral(3)));
+console.log('\nspiral\n' + printFIFO(spiral(4)));
+
+/**
+ * Spiral with recursive iteration
+ */
+const spiralRecursive = size => {
+  const matrix = generateMatrixOfSize(size);
+  const shouldTurn = ({0:x, 1:y}) => x < 0 || y < 0 || x === size || y === size || matrix[x][y] !== undefined;
+  const compass = makeCompass(SPIRAL_DIRECTIONS, shouldTurn);
+  const entries = size * size;
+  const write = (entry, coord) => {
+    if (entry > entries) return;
+    matrix[coord[0]][coord[1]] = entry;
+    write(entry + 1, compass(coord));
+  }
+  write(1, [0, 0]);
+  return matrix;
+};
+
+/**
+ * TEST
+ */
+
+console.log('\nspiralRecursive\n' + printFIFO(spiral(3)));
+console.log('\nspiralRecursive\n' + printFIFO(spiral(4)));
