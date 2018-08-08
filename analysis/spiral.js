@@ -25,6 +25,13 @@ const spiral = size => {
 
 /**
  * 
+ * @param {Array<Array<number>>} matrix
+ * @returns {string} 
+ */
+const print = matrix => matrix.map(row => row.join(' ')).join('\n');
+
+/**
+ * 
  * @param {number} boundary 
  * @param {Array<Tuple>} directions
  * @private 
@@ -41,13 +48,6 @@ const makeCompass = (boundary, directions) => {
     return next;
   }
 }
-
-/**
- * 
- * @param {Array<Array<number>>} matrix
- * @returns {string} 
- */
-const print = matrix => matrix.map(row => row.join(' ')).join('\n');
 
 /**
  * GENERIC HELPERS
