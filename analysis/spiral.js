@@ -5,7 +5,7 @@ const SPIRAL_DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1,
  * @param {number} size 
  * @return {Array<Array<number>>} 
  * @example 
- *    print(spiral(3));
+ *    printFIFO(spiral(3));
  * 
  *    1 2 3
  *    8 9 4
@@ -28,7 +28,7 @@ const spiral = size => {
  * @param {Array<Array<number>>} matrix
  * @returns {string} 
  */
-const print = matrix => matrix.map(row => row.join(' ')).join('\n');
+const printFIFO = matrix => matrix.map(row => row.join(' ')).join('\n');
 
 /**
  * 
@@ -60,4 +60,5 @@ const generateMatrixOfSize = s => Array.from(Array(s)).map(() => Array.from(Arra
  * TEST
  */
 
-console.log('spiral \n' + print(spiral(3)));
+console.log('spiral \n' + printFIFO(spiral(3)));
+console.log('spiral \n' + printFIFO(spiral(4)));
