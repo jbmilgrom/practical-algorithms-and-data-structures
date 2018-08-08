@@ -1,7 +1,7 @@
 const DIRECTIONS = [[0, 1] /* E */, [1, 0] /* N */, [0, -1] /* W */, [-1, 0] /* S */];
 
 /**
- * 
+ * Takes a number n and builds an n x n matrix with n * n numbers filled in with a spiral pattern
  * @param {number} size 
  * @return {Array<Array<number>>} 
  */
@@ -17,6 +17,12 @@ const spiral = size => {
   return matrix;
 };
 
+/**
+ * 
+ * @param {number} boundary 
+ * @param {Array<Tuple>} directions
+ * @private 
+ */
 const makeCompass = (boundary, directions) => {
   let dir = 0;
   const isOutOfBounds = m => m < 0 || m === boundary;
