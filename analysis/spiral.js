@@ -70,13 +70,12 @@ const spiralRecursive = size => {
   const matrix = generateMatrixOfSize(size);
   const shouldTurn = ({0:x, 1:y}) => x < 0 || y < 0 || x === size || y === size || matrix[x][y] !== undefined;
   const compass = makeCompass(SPIRAL_DIRECTIONS, shouldTurn);
-  const entries = size * size;
-  const write = (entry, coord) => {
+  const write = (entries, entry, coord) => {
     if (entry > entries) return;
     matrix[coord[0]][coord[1]] = entry;
-    write(entry + 1, compass(coord));
+    write(entries, entry + 1, compass(coord));
   }
-  write(1, [0, 0]);
+  write(size * size, 1, [0, 0]);
   return matrix;
 };
 
