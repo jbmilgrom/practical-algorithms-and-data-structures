@@ -1,4 +1,4 @@
-def is_balanced(parentheses):
+def are_parentheses_balanced(parentheses):
   stack = []
   OPENING = '('
   for char in parentheses:
@@ -11,5 +11,34 @@ def is_balanced(parentheses):
         return False
   return len(stack) == 0
 
-print is_balanced('(())(()())')
-print is_balanced('(()(')
+print are_parentheses_balanced('(())(()())')
+print are_parentheses_balanced('(()(')
+
+SUPPORTED_NOTATION = {
+  '(': ')',
+  '{': '}',
+  '[': ']'
+}
+
+# Maintain a single stack
+# Push opening characters onto stack
+# For every closing closing character encountered that matches peek, pop
+#   else, return false
+# return whether stack is empty
+def is_balanced(dictionaryOfPairs, subject):
+  stack = []
+  for char in subject:
+    if char in dictionaryOfPairs.keys():
+      stack.append(char)
+    else:
+      if dictionaryOfPairs[stack[-1]] is not char:
+        return False
+      else:
+        try:
+          stack.pop()
+        except IndexError:
+          return False
+  return len(stack) == 0
+
+print is_balanced(SUPPORTED_NOTATION, '{[[]]}{[]}()')
+print is_balanced(SUPPORTED_NOTATION, '{{{]]][')
