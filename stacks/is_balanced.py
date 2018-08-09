@@ -30,14 +30,14 @@ def is_balanced(dictionaryOfPairs, subject):
   for char in subject:
     if char in dictionaryOfPairs.keys():
       stack.append(char)
-    else:
-      if dictionaryOfPairs[stack[-1]] is not char:
-        return False
-      else:
-        try:
-          stack.pop()
-        except IndexError:
-          return False
+      continue
+    try:
+      popped = stack.pop()  
+    except IndexError: # too many closing symbols
+      return False
+    if dictionaryOfPairs[popped] is not char: # mismatch
+      return False
+
   return len(stack) == 0
 
 print is_balanced(SUPPORTED_NOTATION, '{[[]]}{[]}()')
