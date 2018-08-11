@@ -30,14 +30,15 @@ def evaluate(string):
 
   stack = Stack()
   for char in string:
+    if char in OPERATIONS or char == '(':
+      stack.push(char)
     if char == ')':
       digit = stack.pop()
       stack.pop() # pop the open parenthesis
       handleDigit(stack, digit)
     if char.isdigit():
       handleDigit(stack, char)
-    if char in OPERATIONS or char == '(':
-      stack.push(char)
+
     # ignore other characters
 
   return int(stack.pop())
