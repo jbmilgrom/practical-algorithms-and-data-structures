@@ -38,6 +38,8 @@ def calculate(string):
       handleDigit(stack, char)
     if char in OPERATIONS or char == '(':
       stack.push(char)
+    # ignore other characters
+
   return int(stack.pop())
 
 print calculate("3 + 4")
