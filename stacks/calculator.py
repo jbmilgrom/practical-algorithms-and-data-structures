@@ -8,7 +8,7 @@ OPERATIONS = {
 # 2 - (1 + 2) => -1
 # 2 + 9 + 3 => 14
 # alg:
-#   1. Calculate string left to right
+#   1. iterate string left to right
 #     a. num:
 #       i. if top of stack is op, eval (pop() x 2)
 #       ii. if not, push unto stack
@@ -16,7 +16,7 @@ OPERATIONS = {
 #     c. (: push onto stack
 #     d. ): remove open parenthesis and eval num
 #   
-def calculate(string):
+def evaluate(string):
   def evaluateStack(stack, characterDigit2):
     op = OPERATIONS[stack.pop()]
     characterDigit1 = stack.pop()
@@ -42,10 +42,10 @@ def calculate(string):
 
   return int(stack.pop())
 
-print calculate("3 + 4")
-print calculate("3 - 4")
-print calculate("3 - (5 + 3)")
-print calculate("3 - (5 + 3 - (2 + 3)) + 4")
+print evaluate("3 + 4")
+print evaluate("3 - 4")
+print evaluate("3 - (5 + 3)")
+print evaluate("3 - (5 + 3 - (2 + 3)) + 4")
 
 
 
