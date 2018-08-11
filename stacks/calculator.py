@@ -17,15 +17,15 @@ OPERATIONS = {
 #     d. ): remove open parenthesis and eval num
 #   
 def calculate(string):
-  def evaluate(stack, char):
+  def evaluateStack(stack, characterDigit2):
     op = OPERATIONS[stack.pop()]
-    num1 = stack.pop()
-    return str(op(int(num1), int(char)))
+    characterDigit1 = stack.pop()
+    return str(op(int(characterDigit1), int(characterDigit2)))
 
   def handleDigit(stack, characterDigit):
     next = characterDigit
     if stack.size() > 0 and stack.peek() in OPERATIONS:
-      next = evaluate(stack, next)
+      next = evaluateStack(stack, next)
     stack.push(next)
 
   stack = Stack()
