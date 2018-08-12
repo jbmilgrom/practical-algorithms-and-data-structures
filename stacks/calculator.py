@@ -36,12 +36,12 @@ def evaluate(string):
 def handleDigit(stack, digit):
   next = digit
   if stack.size() > 0 and stack.peek() in OPERATIONS:
-    next = call(OPERATIONS[stack.pop()], stack.pop(), digit)
+    next = call(stack.pop(), stack.pop(), digit)
   stack.push(next)
 
 # @private
 def call(op, leftDigit, rightDigit):
-  return str(op(int(leftDigit), int(rightDigit)))
+  return str(OPERATIONS[op](int(leftDigit), int(rightDigit)))
 
 # TEST
 print evaluate("3 + 4")
