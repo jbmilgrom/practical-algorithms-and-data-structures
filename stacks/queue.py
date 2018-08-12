@@ -20,15 +20,17 @@ class Queue:
         self._dequeue.push(self._enqueue.pop())
     return self._dequeue.pop()
 
+# TEST
+
 q = Queue()
 q.enqueue(1)
 q.enqueue(2)
 q.enqueue(3)
 
-print q.dequeue() # 1
-print q.dequeue() # 2
+assert q.dequeue() == 1
+assert q.dequeue() == 2
 
 q.enqueue(4)
 
-print q.dequeue() # 3
-print q.dequeue() # 4
+assert q.dequeue() == 3
+assert q.dequeue() == 4
