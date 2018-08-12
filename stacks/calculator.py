@@ -17,7 +17,7 @@ OPERATIONS = {
 #     d. ): remove open parenthesis and eval num
 #   
 def evaluate(string):
-  stack = Stack()
+  stack = Stack() # Stack<string>
   for char in string:
     if char in OPERATIONS or char == '(':
       stack.push(char)
@@ -33,15 +33,15 @@ def evaluate(string):
   return int(stack.pop())
 
 # @private
-def handleDigit(stack, characterDigit):
-  next = characterDigit
+def handleDigit(stack, digit):
+  next = digit
   if stack.size() > 0 and stack.peek() in OPERATIONS:
-    next = call(OPERATIONS[stack.pop()], stack.pop(), characterDigit)
+    next = call(OPERATIONS[stack.pop()], stack.pop(), digit)
   stack.push(next)
 
 # @private
-def call(op, characterDigit1, characterDigit2):
-  return str(op(int(characterDigit1), int(characterDigit2)))
+def call(op, leftDigit, rightDigit):
+  return str(op(int(leftDigit), int(rightDigit)))
 
 # TEST
 print evaluate("3 + 4")
