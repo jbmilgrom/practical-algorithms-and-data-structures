@@ -23,7 +23,7 @@ def evaluate(string):
       stack.push(char)
     if char == ')':
       digit = stack.pop()
-      stack.pop() # pop the open parenthesis
+      stack.pop() # remove the open parenthesis
       handleDigit(stack, digit)
     if char.isdigit():
       handleDigit(stack, char)
