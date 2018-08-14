@@ -18,7 +18,7 @@ def iterate_binary_search(sortedList, item, start, finish):
   # this rounds up
   #   5 items will result index 5/2 => the 3rd item (midpoint)
   #   4 items, will result in index 4/2 => the 3rd item (round up)
-  mid = start + (1 + finish - start) // 2
+  mid = (start + finish + 1) // 2
   marker = sortedList[mid]
   if item == marker:
     return True
