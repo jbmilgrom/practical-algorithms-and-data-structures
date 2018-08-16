@@ -9,14 +9,12 @@
  * @returns {boolean}
  */
 const searchMatrix = (matrix, target) => {
-    const length = matrix.length;
-    const range = length * length;
-    return binarySearch(range, target, n => {
-      const row = intDiv(n - 1, length);
-      const column = (n - 1) % length;
-      const coordinates = [row, column];
-      return matrix[coordinates[0]][coordinates[1]];
-    });
+  const length = matrix.length;
+  return binarySearch(length * length, target, n => {
+    const row = intDiv(n - 1, length);
+    const column = (n - 1) % length;
+    return matrix[row][column];
+  });
 };
 
 /**
