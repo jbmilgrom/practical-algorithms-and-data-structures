@@ -2,8 +2,7 @@
  * Matrix columns are sorted in increasing order
  * The first item in each row is greater than the last item in the previous row
  * algo:
- *  1. Locate the correct row by halfing successively
- *  2. Locate the item in row by halfing successively
+ *  1. Binary search through matrix translating item number into x, y coordinates
  * @param {Array<Array<number>>} matrix
  * @param {number} target
  * @returns {boolean}
