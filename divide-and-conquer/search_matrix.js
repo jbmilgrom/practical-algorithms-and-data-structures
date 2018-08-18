@@ -24,13 +24,13 @@ const searchMatrix = (matrix, target) => {
  *  4. else, algo([mid, high))
  *  5. loop until range == 1
  *  5. return target == getValue(mid)
- * @param {number} range
+ * @param {number} numOfItems
  * @param {T} target
- * @param {(num: number) => T} getValue
+ * @param {(nthItem: number) => T} getValue
  */
-const binarySearch = (range, target, getValue) => {
-  let low = 0
-  let high = range;
+const binarySearch = (numOfItems, target, getValue) => {
+  let low = 1;
+  let high = numOfItems;
   let mid;
   while (low < high) {
     mid = intDiv(high + low, 2);
