@@ -53,20 +53,3 @@ class BinaryTree:
 
   def prettyPrint(self):
     pprint(self._root)
-
-'''
-TESTING
-'''
-
-items = [2,4,2,67,3,3,6,9,7]
-tree = BinaryTree(list(items))
-
-tree.prettyPrint()
-
-for i in items:
-  print('Should be true ' + str(tree.search(i)))
-
-nonItems = [-1,0,1,5,8,10,23, 96]
-
-for j in nonItems:
-  print('Should be false ' + str(tree.search(j)))
