@@ -1,5 +1,5 @@
 # Search for item by leveraging sorted order of input list
-# binarySearch: 
+# binarySearch:
 #   1. locate mid point
 #   2. if item equals midpoint, return True
 #   3. if item is less than midpoint, throwout right, binarySearch(left)
@@ -33,13 +33,13 @@ def iterate_binary_search(sortedList, item, start, finish):
 
 # TEST
 
-print binary_search([1,2,4,5], 2)
-print binary_search([1,2,4,5], 3)
-print binary_search([1,2,4,5], 4)
-print binary_search([1,2,4,5], 5)
-print binary_search([1,2,4,5,8], 5)
-print binary_search([1,2,4,5, 8], 6)
-print binary_search([1,2,4,5, 8], 8)
+print(binary_search([1,2,4,5], 2))
+print(binary_search([1,2,4,5], 3))
+print(binary_search([1,2,4,5], 4))
+print(binary_search([1,2,4,5], 5))
+print(binary_search([1,2,4,5,8], 5))
+print(binary_search([1,2,4,5, 8], 6))
+print(binary_search([1,2,4,5, 8], 8))
 
 
 

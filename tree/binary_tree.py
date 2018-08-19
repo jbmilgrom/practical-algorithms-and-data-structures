@@ -8,10 +8,10 @@ class BinaryTree:
   def __init__(self, values, isLeft = lambda x, y: x < y):
     self._isLeft = isLeft
     self._root = self.node(values.pop())
-    for v in values:
-      self.insert_node(self.node(v))
+    while len(values) > 0:
+      self.insert_node(self.node(values.pop()))
 
-  def search(self, val):
+  def depth_first_search(self, val):
     def _search(root, val, isLeft):
       if root is None:
         return False
@@ -32,7 +32,7 @@ class BinaryTree:
       dir = self.R
       if isLeft(node[self.V], root[self.V]):
         dir = self.L
-      if root[dir] is not None:
+      if root[dir]:
         _insert_node(root[dir], node, isLeft)
       else:
         root[dir] = node
