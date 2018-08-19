@@ -1,4 +1,4 @@
-from stack import Stack
+from stacks.stack import Stack
 
 OPERATIONS = {
   '+': lambda x, y: x + y,
@@ -15,7 +15,7 @@ OPERATIONS = {
 #     b. op: push onto stack
 #     c. (: push onto stack
 #     d. ): remove open parenthesis and eval num
-#   
+#
 def evaluate(string):
   stack = Stack() # Stack<string>
   for char in string:
@@ -44,7 +44,7 @@ def call(op, leftDigit, rightDigit):
   return str(op(int(leftDigit), int(rightDigit)))
 
 # TEST
-print evaluate("3 + 4")
-print evaluate("3 - 4")
-print evaluate("3 - (5 + 3)")
-print evaluate("3 - (5 + 3 - (2 + 3)) + 4")
+print(evaluate("3 + 4"))
+print(evaluate("3 - 4"))
+print(evaluate("3 - (5 + 3)"))
+print(evaluate("3 - (5 + 3 - (2 + 3)) + 4"))
