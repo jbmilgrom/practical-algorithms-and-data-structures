@@ -1,43 +1,25 @@
 from stacks.queue import Queue
 
+'''
+Initialize a queue with root
+Handle first item in queue while queue has items
+  node = q.dequeue()
+  doSomething(node)
+  for child in node.children(), picking of children L to R (or R to L),
+    q.enqueue(child)
+'''
 def breadth_first_search(root, isItem):
   queue = Queue()
   queue.enqueue(root)
   while not queue.is_empty():
     node = queue.dequeue()
-    if isItem(node.val):
+    if isItem(node['val']):
       return True
-    for childNode in node.children:
-      queue.enqueue(childNode)
+    try:
+      for child in node['children']:
+        queue.enqueue(child)
+    except KeyError:
+      continue
   return False
-
-
-TREE = {
-  'val': 'A',
-  'children': [
-      {
-          'val': 'B',
-          'children': [
-              {'val': 'D'},
-              {'val': 'E'},
-          ]
-      },
-      {
-          'val': 'C',
-          'children': [
-              {'val': 'F'},
-              {'val': 'G'},
-              {'val': 'H'}
-          ]
-      }
-  ]
-}
-
-def isItem(item):
-  return item == 'F'
-print(breadth_first_search(TREE, isItem))
-
-
-
 
 
