@@ -1,5 +1,5 @@
 from graphs.breadth_first_search import breadth_first_search
-from graphs.depth_first_search import depth_first_search
+from graphs.depth_first_search import depth_first_search, depth_first_search_recursive
 
 TREE = {
   'val': 'A',
@@ -49,3 +49,13 @@ for letter in items:
 
 for letter in non_items:
   assert not depth_first_search(TREE, lambda x: x == letter), "Letter %r should not be in the graph" % letter
+
+print('############################')
+print('Testing depth_first_search_recursive')
+print('############################')
+
+for letter in items:
+  assert depth_first_search_recursive(TREE, lambda x: x == letter), "Letter %r should be in the graph" % letter
+
+for letter in non_items:
+  assert not depth_first_search_recursive(TREE, lambda x: x == letter), "Letter %r should not be in the graph" % letter
