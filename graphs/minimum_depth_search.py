@@ -2,13 +2,6 @@ from stacks.queue import Queue
 from pprint import pprint
 
 '''
-Ideas:
-  Execute breadth first search
-    But how to the level children are associated with?
-      assign levels to nodes
-        root node is level 1
-        children are parent + 1
-      first node without children, level
 Queue analysis:
   e.g
         3
@@ -37,12 +30,18 @@ Queue analysis:
     queue is []
     process(Node7)
     enqueue nothing
+Ideas:
+  Execute breadth first search
+    But how to the level children are associated with?
+      assign levels to nodes
+        root node is level 1
+        children are parent + 1
+      first node without children, level
 Steps:
   BFS:
     While queue has items
-      dequeue item and check for children
-      if has children, ++levels
-      if doesn't have children, return level
+      dequeue node and return its level if has no children
+      otherwise, enqueue node with parent+1 level meta data
 '''
 def minimum_depth(root):
   if not root:
