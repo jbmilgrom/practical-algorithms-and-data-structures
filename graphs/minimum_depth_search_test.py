@@ -1,4 +1,4 @@
-from graphs.minimum_depth_search import minimum_depth
+from graphs.minimum_depth_search import minimum_depth_breadth_first, minimum_depth_depth_first
 
 '''
     3
@@ -69,11 +69,22 @@ BINARY_TREE_2 = {
 
 
 print('############################')
-print('Testing minimum_depth_search')
+print('Testing minimum_depth_breadth_first')
 print('############################')
 
-min = minimum_depth(BINARY_TREE_1)
+min = minimum_depth_breadth_first(BINARY_TREE_1)
 assert min == 2, "Tree should have minimum depth of 2 and instead got %r" % min
 
-min = minimum_depth(BINARY_TREE_2)
+min = minimum_depth_breadth_first(BINARY_TREE_2)
+assert min == 3, "Tree should have minimum depth of 3 and instead got %r" % min
+
+
+print('############################')
+print('Testing minimum_depth_depth_first')
+print('############################')
+
+min = minimum_depth_depth_first(BINARY_TREE_1)
+assert min == 2, "Tree should have minimum depth of 2 and instead got %r" % min
+
+min = minimum_depth_depth_first(BINARY_TREE_2)
 assert min == 3, "Tree should have minimum depth of 3 and instead got %r" % min

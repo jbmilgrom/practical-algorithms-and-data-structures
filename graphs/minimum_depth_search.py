@@ -43,7 +43,7 @@ Steps:
       dequeue node and return its level if has no children
       otherwise, enqueue node with parent+1 level meta data
 '''
-def minimum_depth(root):
+def minimum_depth_breadth_first(root):
   if not root:
     return 0
   q = Queue()
@@ -60,3 +60,18 @@ def minimum_depth(root):
 
 def node_level_pair(node, level):
   return {'node': node, 'level': level}
+
+
+'''
+The depth of a leaf-node is 1
+The minimum depth of a tree equals the min of the minimum depths of its childen subtrees
+'''
+def minimum_depth_depth_first(root):
+  if not root:
+    return 0
+  left, right, SINGLE_NODE_DEPTH = root['left'], root['right'], 1
+  if not left and not right:
+    return SINGLE_NODE_DEPTH
+  if left and right:
+    return SINGLE_NODE_DEPTH + min(minimum_depth_depth_first(left), minimum_depth_breadth_first(right))
+  return SINGLE_NODE_DEPTH + minimum_depth_breadth_first(left or right)
