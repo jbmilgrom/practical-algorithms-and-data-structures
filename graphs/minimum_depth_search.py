@@ -64,7 +64,7 @@ def node_level_pair(node, level):
 
 '''
 The depth of a leaf-node is 1
-The minimum depth of a tree equals the min of the minimum depths of its childen subtrees
+The minimum depth of a tree equals 1 plus the min of the minimum depths of its childen subtrees
 '''
 def minimum_depth_depth_first(root):
   if not root:
