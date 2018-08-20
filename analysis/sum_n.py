@@ -4,8 +4,8 @@ def sumIterativeLoop(n):
     sum += i
   return sum
 
-print "sumIterativeLoop(3)"
-print sumIterativeLoop(3)
+print("sumIterativeLoop(3)")
+print(sumIterativeLoop(3))
 
 def sumIterativeRecursive(n):
   def iterate(n, sum):
@@ -14,24 +14,23 @@ def sumIterativeRecursive(n):
     return iterate(n - 1, sum + n)
   return iterate(n, 0)
 
-print "sumIterativeRecursive(3)"
-print sumIterativeRecursive(3)
+print("sumIterativeRecursive(3)")
+print(sumIterativeRecursive(3))
 
 def sumRecursive(n):
   if n == 0:
     return n
   return n + sumRecursive(n - 1)
 
-print "sumRecursive(3)"
-print sumRecursive(3)
+print("sumRecursive(3)")
+print(sumRecursive(3))
 
 # n == 3; 3/2 => 1.5 * 4 => 6
-# n == 4: 4/2 => 2 * 5 => 10 
+# n == 4: 4/2 => 2 * 5 => 10
 def sumNConstantTime(n):
   return (n+1) * n//2
 
 template = '{}({}): {:5d}'
 for i in range(1, 10):
-  print template.format('sumNConstantTime', i, sumNConstantTime(i))
+  print(template.format('sumNConstantTime', i, sumNConstantTime(i)))
 
-  

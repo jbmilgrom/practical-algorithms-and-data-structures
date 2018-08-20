@@ -1,5 +1,5 @@
 # Determine whether s1 is an anagram of s2
-# alg: 
+# alg:
 #   1. Check if letter in s1 is in s2
 #   2. if not, return false
 #   3. else, checkoff letter from s2
@@ -18,6 +18,6 @@ def is_anagram_checking_off(s1, s2):
     else: # no break
       return False
   return True
-      
-print is_anagram_checking_off('hello', 'ellho')
-print is_anagram_checking_off('hello', 'elvho')
+
+print(is_anagram_checking_off('hello', 'ellho'))
+print(is_anagram_checking_off('hello', 'elvho'))
