@@ -47,20 +47,16 @@ def minimum_depth_breadth_first(root):
   if not root:
     return 0
   q = Queue()
-  q.enqueue(node_level_pair(root, 1))
+  q.enqueue((root, 1))
   while not q.is_empty():
-    node = q.dequeue()
-    left, right, level = node['node']['left'], node['node']['right'], node['level']
+    node, level = q.dequeue()
+    left, right = node['left'], node['right']
     if not left and not right:
       return level
     if left:
-      q.enqueue(node_level_pair(left, level + 1))
+      q.enqueue((left, level + 1))
     if right:
-      q.enqueue(node_level_pair(right, level + 1))
-
-def node_level_pair(node, level):
-  return {'node': node, 'level': level}
-
+      q.enqueue((right, level + 1))
 
 '''
 The depth of a leaf-node is 1
