@@ -1,5 +1,17 @@
 from collections import Counter
 
+'''
+All of these methods generate all anagrams of an inputted string
+They have in common the fact that no process is iterative i.e. no process
+    carries the complete state of where in the "iteration" the process stands from function call to function call
+    can be paused
+(Note: the complete state of this graph traversal problem would include the extent which the graph has been traversed
+    i.e. a representation of the graph itself)
+Instead, each process relies on the call stack to some extent (or stack data structure if reimplemented that way)
+    to know where in the graph a given step resides
+'''
+
+# anagram_backtracking_word_and_visited
 # Understanding:
 #   An anagram is a sentence comprised of the same letters from the source, just rearranged
 #       It may have more spaces than the original - we are ignoring this fact for now
