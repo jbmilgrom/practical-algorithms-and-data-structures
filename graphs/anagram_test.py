@@ -16,7 +16,7 @@ def factorial(n):
 
     return factorial_iter(1, n)
 
-def count_results(string):
+def count_anagrams(string):
     letters = Counter(string)
 
     duplicate_permutations = sum(factorial(count) for count in letters.values() if count > 1)
@@ -34,7 +34,7 @@ def test(func, string):
     print("Testing {}('{}')".format(func.__name__, string))
     print('############################')
 
-    assert count_results(string) == len(func(string))
+    assert count_anagrams(string) == len(func(string))
 
 
 for f in [anagram_backtracking_word_and_visited, anagram_backtracking_visited, anagram, anagram_immutable]:
