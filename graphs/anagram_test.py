@@ -1,4 +1,5 @@
 from graphs.anagram import anagram_backtracking_word_and_visited, anagram_backtracking_visited
+from graphs.anagram import anagram, anagram_immutable
 from collections import Counter
 import sys
 
@@ -10,7 +11,9 @@ def factorial(n):
     def factorial_iter(prod, n):
         if n == 0:
             return prod
+
         return factorial_iter(prod * n, n - 1)
+
     return factorial_iter(1, n)
 
 def count_results(string):
@@ -37,7 +40,6 @@ def test(func, string):
     assert count_results(string) == len(func(string))
 
 
-test(anagram_backtracking_word_and_visited, 'abd')
-test(anagram_backtracking_word_and_visited, 'abbbbbbbd')
-test(anagram_backtracking_visited, 'abd')
-test(anagram_backtracking_visited, 'abbbbbbbd')
+for f in [anagram_backtracking_word_and_visited, anagram_backtracking_visited, anagram, anagram_immutable]:
+    for s in ['abd', 'abbbbbbbd']:
+        test(f, s)

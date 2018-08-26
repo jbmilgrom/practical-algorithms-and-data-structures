@@ -11,6 +11,7 @@ from collections import Counter
 #       [L1, L2, ... LN] -> [L1, L2, ... LN-1]
 #   Depth first search in order to build up sentences one at time
 #   Backtrack on sentence in order to be able to track a single sentence at a time
+
 def anagram_backtracking_word_and_visited(sentence):
     length, an_anagram, letters, results = len(sentence), '', Counter(sentence), []
 
@@ -49,8 +50,8 @@ def anagram_backtracking_visited(sentence):
             results.append(_sentence)
             return
 
-        for letter, value in letters.items():
-            if not value:
+        for letter, count in letters.items():
+            if not count:
                 continue
 
             letters[letter] -= 1
@@ -59,6 +60,51 @@ def anagram_backtracking_visited(sentence):
 
     recurse_graph('')
     return results
+
+# new string for every node
+# dictionary representing the history of _un_visited nodes for every node
+def anagram(sentence):
+    length, results = len(sentence), []
+    def recurse_tree(remaining_letters, _sentence):
+        if is_last_word_invalid(_sentence):
+            return
+
+        if len(_sentence) == length:
+            results.append(_sentence)
+            return
+
+        for letter, count in remaining_letters.items():
+            if not count:
+                continue
+
+            copy = remaining_letters.copy()
+            copy[letter] -= 1
+            recurse_tree(copy, _sentence + letter)
+
+    recurse_tree(Counter(sentence), '')
+    return results
+
+# Avoid shared state between function calls
+def anagram_immutable(sentence):
+    length = len(sentence)
+    def recurse_tree(remaining_letters, _sentence):
+        if is_last_word_invalid(_sentence):
+            return []
+
+        if len(_sentence) == length:
+            return [_sentence]
+
+        results = []
+        for letter, count in remaining_letters.items():
+            if not count:
+                continue
+
+            copy = remaining_letters.copy()
+            copy[letter] -= 1
+            results = results + recurse_tree(copy, _sentence + letter)
+        return results
+
+    return recurse_tree(Counter(sentence), '')
 
 # Trivial for now
 def is_last_word_invalid(word):
