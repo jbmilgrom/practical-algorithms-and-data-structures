@@ -31,8 +31,8 @@ def anagram_backtracking_word_and_visited(sentence):
             an_anagram += letter
             letters[letter] -= 1
             recurse_graph()
-            an_anagram = an_anagram[:-1]
             letters[letter] += 1
+            an_anagram = an_anagram[:-1]
 
     recurse_graph()
     return results
