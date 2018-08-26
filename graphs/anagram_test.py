@@ -1,5 +1,6 @@
-from graphs.anagram import anagram_backtracking
+from graphs.anagram import anagram_backtracking_word_and_visited, anagram_backtracking_visited
 from collections import Counter
+import sys
 
 print('############################')
 print('Testing anagram_backtracking')
@@ -28,13 +29,15 @@ def count_results(string):
     return permutations / duplicate_permutations
 
 
-def test(string):
+def test(func, string):
     print('############################')
-    print("Testing anagram_backtracking('{}')".format(string))
+    print("Testing {}('{}')".format(func.__name__, string))
     print('############################')
 
-    assert count_results(string) == len(anagram_backtracking(string))
+    assert count_results(string) == len(func(string))
 
 
-test('abd')
-test('abbbbbbbd')
+test(anagram_backtracking_word_and_visited, 'abd')
+test(anagram_backtracking_word_and_visited, 'abbbbbbbd')
+test(anagram_backtracking_visited, 'abd')
+test(anagram_backtracking_visited, 'abbbbbbbd')
