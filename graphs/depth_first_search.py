@@ -32,8 +32,10 @@ The Call _Stack_ Stores "Next Node" Instructions:
 When a branch is exhausted, the function call to the leaf node returns and is
 popped from the call stack, and the remainder of the call stack is summoned for further
 instruction. If the recursive process has been correctly designed, requests to children
-of increasingly senior nodes lay in wait as was all as increasingly junior nodes
+of increasingly senior nodes lay in wait as well all as increasingly junior nodes
 with respect thereto.
+
+@returns {True|None} <-- Important; notice, False is not returned if item cannot be found
 '''
 def depth_first_search_recursive(root, isItem):
   if isItem(root['val']):
