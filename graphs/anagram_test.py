@@ -18,11 +18,8 @@ def factorial(n):
 
 def count_results(string):
     letters = Counter(string)
-    duplicate_permutations = 0
 
-    for count in letters.values():
-        if count > 1:
-            duplicate_permutations += factorial(count)
+    duplicate_permutations = sum(factorial(count) for count in letters.values() if count > 1)
 
     permutations = factorial(len(string))
 
