@@ -1,3 +1,5 @@
+from pprint import pprint
+
 class Stack:
 
   def __init__(self):
@@ -17,3 +19,6 @@ class Stack:
 
   def size(self):
     return len(self._items)
+
+  def stdout(self):
+    pprint(self._items)
