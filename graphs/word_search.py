@@ -37,9 +37,13 @@ def exists(board, word):
 
     for i in range(0, n):
         for j in range(0, m):
+            visited.add((i, j))
+
             has_word = traverse(0, (i, j))
             if has_word:
                 return True
+
+            visited.remove((i, j))
 
     return False
 

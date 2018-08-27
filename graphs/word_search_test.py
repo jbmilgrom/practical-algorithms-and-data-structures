@@ -14,3 +14,7 @@ board = [
 assert exists(board, 'ABCCED'), "ABCCED is in the board"
 assert exists(board, 'SEE'), "SEE is in the board"
 assert not exists(board, 'ABCB'), 'ABCB is NOT in the board'
+
+board = ['a', 'a']
+
+assert not exists(board, 'aaa'), 'aaa is not in the baord'
