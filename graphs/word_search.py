@@ -1,39 +1,51 @@
 # Understanding:
-#   A word can begin anywhere and go in any direction sequentially
-#   Valid directions: N, W, S, E
+#   n x m board with a letter in each slot
+#   Board can be traversed N, S, E, W
+#   A "word" is a sequence of letters
 # Problem:
-#   Given a word, determine whether or not it can be found in the grid
+#   Given a word, determine is a matching sequence exists in the board
+# Graph:
+#   Given a point (i, j) on the board, a graph constitutes paths in all directions therefrom
+#   (i, j) -> N, S, W, E
+#   where a node is considered visited when touched and part of a successful match
 # Plan:
-#   Depth first search the grid, return True when word is found
-#     Accrue a word as a path is descended
-#     Decrement word as path is ascended
-#
-#   Otherwise, return False
-def word_search(grid, word):
-  letters = grid[0][0]
-  x_length = len(grid)
-  y_length = len(grid[0])
-  start = (0, 0)
-  visited = {start: True}
-  def recurse_grid(coord):
-    nonlocal letters
-    if word in letters:
-      return True
-    if len(letters) == y_length * x_length:
-      return
-    for next in neighbors(coord, -1, x_length, y_length):
-      if visited.get(next):
-        continue
-      letters += grid[next[0]][next[1]]
-      visited[next] = True
-      has_word = recurse_grid(next)
-      if has_word:
-        return True
-      letters = letters[:-1]
-      visited[next] = False
-  return recurse_grid(start)
+#   Iterate through each m x n spot on the graph
+#   Depth first search(globally maintained visited set with backtracking)
+#       terminate if letter doesn't match
+#       continue if letter matches, stopping when a length of path equals len(word), return True
+def exists(board, word):
+    visited, n, m, length = set(), len(board), len(board[0]), len(word)
 
-def neighbors(coordinate, low, x_high, y_high):
-  x, y = coordinate
-  delta = [ (0, 1), (1, 0), (-1, 0), (0, -1) ]
-  return [ (x + i, y + j) for i, j in delta if x + i < x_high and x + i > low and y + j < y_high and y + j > low ]
+    def traverse(index, current):
+        if board[current[0]][current[1]] is not word[index]:
+            return
+
+        if index + 1 == length:
+            return True
+
+        for next in neighbors(current, n, m):
+            if next in visited:
+                continue
+
+            visited.add(next)
+
+            has_word = traverse(index + 1, next)
+            if has_word:
+                return True
+
+            visited.remove(next)
+
+    for i in range(0, n):
+        for j in range(0, m):
+            has_word = traverse(0, (i, j))
+            if has_word:
+                return True
+
+    return False
+
+
+def neighbors(coordinate, n, m):
+    low = -1
+    x, y = coordinate
+    delta = [ (0, 1), (1, 0), (-1, 0), (0, -1) ]
+    return [ (x + i, y + j) for i, j in delta if x + i < n and x + i > low and y + j < m and y + j > low ]
