@@ -11,8 +11,8 @@ def are_parentheses_balanced(parentheses):
         return False
   return len(stack) == 0
 
-print are_parentheses_balanced('(())(()())')
-print are_parentheses_balanced('(()(')
+print(are_parentheses_balanced('(())(()())'))
+print(are_parentheses_balanced('(()('))
 
 SUPPORTED_NOTATION = {
   '(': ')',
@@ -32,7 +32,7 @@ def is_balanced(dictionaryOfPairs, subject):
       stack.append(char)
       continue
     try:
-      popped = stack.pop()  
+      popped = stack.pop()
     except IndexError: # too many closing symbols
       return False
     if dictionaryOfPairs[popped] is not char: # mismatch
@@ -40,5 +40,5 @@ def is_balanced(dictionaryOfPairs, subject):
 
   return len(stack) == 0
 
-print is_balanced(SUPPORTED_NOTATION, '{[[]]}{[]}()')
-print is_balanced(SUPPORTED_NOTATION, '{{{]]][')
+print(is_balanced(SUPPORTED_NOTATION, '{[[]]}{[]}()'))
+print(is_balanced(SUPPORTED_NOTATION, '{{{]]]['))

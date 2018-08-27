@@ -56,6 +56,9 @@ def generate_parenthesis(n):
     return results
 
 
+# We want an invalidity chech that can be applied before a paranethetical expression is fully baked
+# to avoid going down a bad path. That is what this attempts to solve.
+#
 # Understanding:
 #   A balanced parenthetical expression has no closing tag without a corresponding opening
 # Problem:
@@ -70,18 +73,19 @@ def cannot_be_valid(expr):
 
     while i >= 0:
         char = expr[i]
+        i -= 1
 
         if char == CLOSE:
             close.push(char)
+            continue
 
-        else:
-            try:
-                close.pop()
-            # an opening paren was reached with no closing tags to the right of it
-            except IndexError:
-                return False
+        try:
+            close.pop()
+        # an opening paren was reached with no closing tags to the right of it
+        except IndexError:
+            return False
 
-        i -= 1
+
 
     return not close.is_empty()
 
