@@ -23,27 +23,23 @@ def exists(board, word):
         if index + 1 == length:
             return True
 
+        visited.add(current)
+
         for next in neighbors(current, n, m):
             if next in visited:
                 continue
-
-            visited.add(next)
 
             has_word = traverse(index + 1, next)
             if has_word:
                 return True
 
-            visited.remove(next)
+        visited.remove(current)
 
     for i in range(0, n):
         for j in range(0, m):
-            visited.add((i, j))
-
             has_word = traverse(0, (i, j))
             if has_word:
                 return True
-
-            visited.remove((i, j))
 
     return False
 
