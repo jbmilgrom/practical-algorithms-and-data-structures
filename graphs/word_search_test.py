@@ -31,5 +31,5 @@ def test(fn):
         for word in board['out']:
             assert not fn(board['board'], word), "{}({}) is NOT in the board".format(fn.__name__, word)
 
-# test(exists)
+test(exists)
 test(exists_stack_based)
