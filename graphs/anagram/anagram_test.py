@@ -1,5 +1,5 @@
-from graphs.anagram import anagram_backtracking_word_and_visited, anagram_backtracking_visited
-from graphs.anagram import anagram, anagram_immutable
+from graphs.anagram.anagram import anagram_backtracking_word_and_visited, anagram_backtracking_visited
+from graphs.anagram.anagram import anagram, anagram_immutable
 from collections import Counter
 import sys
 
