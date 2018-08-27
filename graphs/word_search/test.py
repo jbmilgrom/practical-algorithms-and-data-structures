@@ -1,4 +1,4 @@
-from graphs.word_search.word_search import exists, exists_stack_based
+from graphs.word_search.method import exists, exists_stack_based
 
 print('############################')
 print('Testing word_search_backtracking')
