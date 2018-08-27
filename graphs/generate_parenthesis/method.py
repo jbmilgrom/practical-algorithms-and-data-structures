@@ -81,11 +81,9 @@ def cannot_be_valid(expr):
 
         try:
             close.pop()
-        # an opening paren was reached with no closing tags to the right of it
+        # an opening paren was reached with no closing tags to the right of it, this _could_ be valid
         except IndexError:
             return False
-
-
 
     return not close.is_empty()
 
