@@ -28,30 +28,23 @@ CLOSE = ')'
 #   Maintain a results array
 
 def generate_parenthesis(n):
-    results, open, close = [], Stack(), Stack()
+    results = []
 
-    for i in range(0, n * 2):
-        open.push(OPEN) if i % 2 else close.push(CLOSE)
-
-    def generate(expr):
+    def generate(expr, available_open, available_close):
         if len(expr) and cannot_be_valid(expr):
             return
 
-        if open.is_empty() and close.is_empty():
+        if not available_open and not available_close:
             results.append(expr)
             return
 
-        if not open.is_empty():
-            open.pop()
-            generate(expr + OPEN)
-            open.push(OPEN)
+        if available_open:
+            generate(expr + OPEN, available_open - 1, available_close)
 
-        if not close.is_empty():
-            close.pop()
-            generate(expr + CLOSE)
-            close.push(CLOSE)
+        if available_close:
+            generate(expr + CLOSE, available_open, available_close - 1)
 
-    generate('')
+    generate('', n, n)
 
     return results
 
