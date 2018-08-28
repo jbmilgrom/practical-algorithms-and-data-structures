@@ -21,6 +21,16 @@ boards = [
         ],
         'in': ['aa'],
         'out': ['aaa']
+    },
+    {
+        'board': [
+            ['X', 'D'],
+            ['X', 'C'],
+            ['C', 'B'],
+            ['B', 'A']
+        ],
+        'in': ['ABCD', 'ABCB'],
+        'out': ['ABCF']
     }
 ]
 

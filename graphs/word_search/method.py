@@ -26,6 +26,9 @@ def exists(board, word):
         if index + 1 == length:
             return True
 
+        # Build up a history of the path to avoid backtracking/double-counting e.g. A (0, 1) -> B (0, 2) -> B (0, 1)
+        #   This isn't to avoid an infinite loop - letters that are not on the board cannot be found; this is
+        #   only to avoid false positives e.g. ABA
         visited.add(current)
 
         for next in neighbors(current, n, m):
@@ -35,6 +38,8 @@ def exists(board, word):
             if has_word(index + 1, next):
                 return True
 
+        # We are diving into the depths of the graph to locate a word
+        # If the dive (root) didn't work remove the root and try a different dive
         visited.remove(current)
 
     for i in range(0, n):
@@ -62,6 +67,11 @@ def exists_stack_based(board, word):
         while not stack.is_empty():
             current = stack.pop()
 
+            if current[0] == 'PARENT_MARKER':
+                visited.remove(current[1])
+                index -= 1
+                continue
+
             visited.add(current)
 
             if board[current[0]][current[1]] is not word[index]:
@@ -72,6 +82,10 @@ def exists_stack_based(board, word):
                 return True
 
             index += 1
+
+            # Mark the parent of the below children so that if all children are processed and no word is found,
+            # we can remove the parent from visited as well and move onto the remaining items in the stack
+            stack.push(('PARENT_MARKER', current))
 
             for next in neighbors(current, n, m):
                 if next in visited:
