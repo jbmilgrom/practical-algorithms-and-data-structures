@@ -72,15 +72,13 @@ def exists_stack_based(board, word):
                 index -= 1
                 continue
 
-            visited.add(current)
-
             if board[current[0]][current[1]] is not word[index]:
-                visited.remove(current)
                 continue
 
             if index + 1 == length:
                 return True
 
+            visited.add(current)
             index += 1
 
             # Mark the parent of the below children so that if all children are processed and no word is found,
