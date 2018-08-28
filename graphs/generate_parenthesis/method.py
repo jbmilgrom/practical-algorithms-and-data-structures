@@ -69,12 +69,9 @@ def generate_parenthesis(n):
 #       Pop stack when open paren is reached
 #       return stack == empty
 def cannot_be_valid(expr):
-    i, close = len(expr) - 1, Stack()
+    close = Stack()
 
-    while i >= 0:
-        char = expr[i]
-        i -= 1
-
+    for char in reversed(expr):
         if char == CLOSE:
             close.push(char)
             continue
