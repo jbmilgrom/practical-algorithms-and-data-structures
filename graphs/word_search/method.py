@@ -39,7 +39,7 @@ def exists(board, word):
                 return True
 
         # We are diving into the depths of the graph to locate a word
-        # If the dive (root) didn't work remove the root and try a different dive
+        # If the dive (root) didn't work, a subsequent dive should be able to use this node
         visited.remove(current)
 
     for i in range(0, n):
