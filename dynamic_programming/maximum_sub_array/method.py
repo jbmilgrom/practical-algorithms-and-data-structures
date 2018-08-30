@@ -15,31 +15,28 @@
 # Problem:
 #   Given an array of integers, return the max sum of aany contiguous subarray
 def maximum_subarray(arr):
-    length = len(arr)
+    max, end, adjacent_max = arr[0], 0, None
 
-    def maximum_subarray_that_ends_at(i, max, end, adjacent_max):
-        if i == length:
-            return max
-
-        num, next = arr[i], i + 1
+    for i in range(1, len(arr)):
+        num = arr[i]
 
         if max < 0 and num > max:
-            return maximum_subarray_that_ends_at(next, num, i, None)
+            max, end = num, i
+            continue
 
         if num < 0:
-            return maximum_subarray_that_ends_at(next, max, end, None)
+            continue
 
         if end == i - 1:
-            return maximum_subarray_that_ends_at(next, max + num, i, None)
+            max, end = max + num, i
+            continue
 
-        candidate = num if adjacent_max is None else adjacent_max + num
+        adjacent_max = num if adjacent_max is None else adjacent_max + num
 
-        if candidate > max:
-            return maximum_subarray_that_ends_at(next, candidate, i, candidate)
-        else:
-            return maximum_subarray_that_ends_at(next, max, end, candidate)
+        if adjacent_max > max:
+            max, adjacent_max = adjacent_max, None
 
-    return maximum_subarray_that_ends_at(1, arr[0], 0, None)
+    return max
 
 
 
