@@ -18,3 +18,6 @@ assert max == 18, "expected {}; received: {}".format(18, max)
 
 max = maximum_subarray([-1, 3,2,6, -3, 4,5, 9, -1, 10, 10])
 assert max == 20, "expected {}; received: {}".format(20, max)
+
+max = maximum_subarray([-1, 3,2,6, -3, 4,5, 9, -1, 10, 2, 3, -9])
+assert max == 18, "expected {}; received: {}".format(18, max)
