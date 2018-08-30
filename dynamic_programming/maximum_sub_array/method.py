@@ -29,7 +29,7 @@ def maximum_subarray(arr):
         if num < 0:
             continue
 
-        # if max subarray is alive (and num > 0), add to it
+        # if max subarray is alive (and num > 0), add to it and keep it alive
         if end == i - 1:
             max, end = max + num, i
             continue
@@ -39,7 +39,7 @@ def maximum_subarray(arr):
 
         # if the alternative is greater than the max, we have a new max, remove the alternative
         if alternative_max > max:
-            max, alternative_max = alternative_max, None
+            max, alternative_max, end = alternative_max, None, i
 
     return max
 
