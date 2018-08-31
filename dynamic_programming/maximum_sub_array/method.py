@@ -8,40 +8,33 @@
 #   Find the maximum subarray that ends at i
 #   Add i + 1
 # Understanding:
-#   The maximum subarray that ends at i + 1 is:
-#       the maximum subarrary plus i if i > 0 and array ends at i
-#       elif i < 0: do nothing
-#       elif subarray[i] == None: check subarray ending at i against max
+#   The max of subarray that endssss in i
+#   If we know the max subarray that endsss at n - 1, then we know the max subarray that ends at n
+#       if is max(n-1 + n, n)
 # Problem:
 #   Given an array of integers, return the max sum of aany contiguous subarray
-def maximum_subarray(arr):
-    max, end, alternative_max = arr[0], 0, None
+def maximum_subarray(nums):
+    all = [None] * len(nums)
 
-    for i in range(1, len(arr)):
-        num = arr[i]
-
-        # if max is less than zero, we have easy work to do
-        if max < 0 and num > max:
-            max, end = num, i
+    for i, num in enumerate(nums):
+        if i == 0:
+            all[0] = num
             continue
 
-        # if num is less than zero (and max isn't), move on
-        if num < 0:
+        all[i] = max(num + all[i - 1], num)
+
+    maximum = None
+    for i, prospect in enumerate(all):
+        if i == 0:
+            maximum = prospect
             continue
 
-        # if max subarray is alive (and num > 0), add to it and keep it alive
-        if end == i - 1:
-            max, end = max + num, i
-            continue
+        maximum = max(maximum, prospect)
 
-        # otherwise, build an alternative
-        alternative_max = num if alternative_max is None else alternative_max + num
+    return maximum
 
-        # if the alternative is greater than the max, we have a new max, remove the alternative
-        if alternative_max > max:
-            max, alternative_max, end = alternative_max, None, i
 
-    return max
+
 
 
 
