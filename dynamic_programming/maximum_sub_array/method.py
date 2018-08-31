@@ -26,6 +26,17 @@ def maximum_subarray(nums):
 
     return maximum
 
+# recursive procedure to perform iteration
+def maximum_subarray_rec_proc(nums):
+    def iterate(i, maximum, previous):
+        if i == len(nums):
+            return maximum
+
+        num = nums[i]
+        previous = max(num + previous, num)
+        return  iterate(i + 1, max(previous, maximum), previous)
+
+    return iterate(1, nums[0], nums[0])
 
 
 
