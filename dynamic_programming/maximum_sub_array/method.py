@@ -23,15 +23,7 @@ def maximum_subarray(nums):
 
         all[i] = max(num + all[i - 1], num)
 
-    maximum = None
-    for i, prospect in enumerate(all):
-        if i == 0:
-            maximum = prospect
-            continue
-
-        maximum = max(maximum, prospect)
-
-    return maximum
+    return max(all)
 
 
 
