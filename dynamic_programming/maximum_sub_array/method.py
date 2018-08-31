@@ -14,16 +14,17 @@
 # Problem:
 #   Given an array of integers, return the max sum of aany contiguous subarray
 def maximum_subarray(nums):
-    all = [None] * len(nums)
+    maximum = None
 
     for i, num in enumerate(nums):
         if i == 0:
-            all[0] = num
+            previous = maximum = num
             continue
 
-        all[i] = max(num + all[i - 1], num)
+        previous = max(num + previous, num)
+        maximum = max(previous, maximum)
 
-    return max(all)
+    return maximum
 
 
 
