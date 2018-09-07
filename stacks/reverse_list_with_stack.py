@@ -1,4 +1,4 @@
-from stack import Stack
+from stacks.stack import Stack
 
 def reverse_list(arr):
   stack = Stack()
@@ -9,4 +9,4 @@ def reverse_list(arr):
     reversed.append(stack.pop())
   return reversed
 
-print reverse_list([1,2,3,4])
+print(reverse_list([1,2,3,4]))

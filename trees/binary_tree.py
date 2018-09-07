@@ -56,4 +56,4 @@ class BinaryTree:
     }
 
   def prettyPrint(self):
-    pprint(self._root)
+    pprint(self._root, width=1)

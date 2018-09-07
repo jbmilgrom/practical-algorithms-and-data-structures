@@ -55,7 +55,7 @@ def generate_parenthesis(n):
 # Understanding:
 #   A balanced parenthetical expression has no closing tag without a corresponding opening
 # Problem:
-#   Identify a closing paren towards on the right that has no match on the left
+#   Identify a closing paren on the right that has no match on the left
 # Plan:
 #   Iterate from right to left
 #       Push closing paren onto a stack
