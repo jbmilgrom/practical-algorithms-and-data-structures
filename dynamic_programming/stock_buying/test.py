@@ -1,4 +1,6 @@
-from dynamic_programming.stock_buying.method import max_profit_dfs, max_profit_dp, max_profit_single_transaction_dp
+from dynamic_programming.stock_buying.method import max_profit_single_transaction_dp
+from dynamic_programming.stock_buying.method import max_profit_with_cooldown_dp
+from dynamic_programming.stock_buying.method import max_profit_with_cooldown_dfs
 from dynamic_programming.stock_buying.method import max_profit_single_transaction_dp_states
 
 print('############################')
@@ -6,11 +8,11 @@ print('Testing Stock Buying with Cooldown')
 print('############################')
 
 prices = [1,2,3,0,2]
-profit = max_profit_dfs(prices)
+profit = max_profit_with_cooldown_dfs(prices)
 assert profit == 3, "Expected profit: {}; received {}".format(3, profit)
 
 prices = [1,2,3,0,2]
-profit = max_profit_dp(prices)
+profit = max_profit_with_cooldown_dp(prices)
 assert profit == 3, "Expected profit: {}; received {}".format(3, profit)
 
 print('############################')

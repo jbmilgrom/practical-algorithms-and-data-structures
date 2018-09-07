@@ -19,8 +19,8 @@
 #       For individual path carry profit state
 #       Base case is (v + profit) when iteration reaches i + 1 == length
 
-def max_profit_dfs(prices):
-    maximum, length, graph = 0, len(prices), Graph()
+def max_profit_with_cooldown_dfs(prices):
+    maximum, length, graph = 0, len(prices), CooldownGraph()
 
     def search(i, prev, profit, purchase_price):
         nonlocal maximum
@@ -46,11 +46,11 @@ def max_profit_dfs(prices):
 
             search(i + 1, next, profit, purchase_price)
 
-    search(0, Graph.DRY_POWDER, 0, None)
+    search(0, CooldownGraph.DRY_POWDER, 0, None)
 
     return maximum
 
-class Graph:
+class CooldownGraph:
     DRY_POWDER = 'DRY_POWDER'
     HOLDING = 'HOLDING'
     COOLDOWN = 'COOLDOWN'
@@ -89,7 +89,7 @@ class Graph:
 #   holding[n] = max(dry_powder[n-1] - price[n], holding[n-1])
 #   cooldown[n] = holding[n-1] + price[n]
 
-def max_profit_dp(prices):
+def max_profit_with_cooldown_dp(prices):
     if not len(prices):
         return 0
 
@@ -136,6 +136,9 @@ def max_profit_single_transaction_dp(prices):
     return profit
 
 def max_profit_single_transaction_dp_states(prices):
+    if not len(prices):
+        return 0
+
     holding, sold = -prices[0], 0
 
     for i, price in enumerate(prices):
@@ -146,3 +149,110 @@ def max_profit_single_transaction_dp_states(prices):
         holding = max(holding, -price)
 
     return sold
+
+# Understanding:
+#   buy low, sell high results in profit
+#   can buy and sell multiple times
+#   cannot hold more than one stock at a time
+#   states:
+#       (POWDER) -> (POWDER, HOLDING) -> ((POWDER, HOLDING), (POWDER, HOLDING))
+#        P -> H -> P (and each can go back to self)
+def max_profit_multiple_transactions(prices):
+    if not len(prices):
+        return 0
+
+    powder, holding = 0, -prices[0]
+
+    for i, price in enumerate(prices):
+        if i == 0:
+            continue
+
+        powder = max(powder, holding + price)
+        holding = max(holding, powder - price)
+
+    return powder
+
+# Understanding:
+#   Can make at most two transactions
+#   A transaction is a roundtrip: it occurs when stock is bought and sold
+#   Note that the multiple transactions algo accrues profit indiscriminately
+#   Now we need to cap transactions
+#   Brute force DFS: we could model all the state changes and constrain paths based on 2 transaction cap
+# Plan:
+#   depth first search of the various states
+#   track transactions
+#   track max profit
+#   when transaction limit is reached, stop searching and compare to previous max
+def max_profit_two_transactions_dfs_recurse(prices):
+    if not len(prices):
+        return 0
+
+    max_profit, graph = 0, BuySellGraph()
+
+    def search(i, state, holding, profit, transactions):
+        nonlocal max_profit
+
+        if transactions == 2 or i == len(prices):
+            max_profit = max(max_profit, profit)
+            return
+
+        for next in graph.neighbors(state):
+            if graph.is_purchase(state, next):
+                search(i + 1, next, prices[i], profit, transactions)
+                continue
+
+            if graph.is_sale(state, next):
+                search(i + 1, next, None, profit + prices[i] - holding, transactions + 1)
+                continue
+
+            search(i + 1, next, holding, profit, transactions)
+
+    search(0, graph.DRY_POWDER, None, 0, 0)
+
+    return max_profit
+
+def max_profit_two_transactions_dfs_stack(prices):
+    graph = BuySellGraph()
+    stack = [(graph.DRY_POWDER, 0, 0, 0)]
+    max_profit = 0
+
+    while len(stack):
+        state, profit, transactions, i = stack.pop()
+
+        if transactions == 2 or i == len(prices):
+            max_profit = max(max_profit, profit)
+            continue
+
+        for next in graph.neighbors(state):
+            price = prices[i]
+
+            if graph.is_purchase(state, next):
+                profit = profit - price
+
+            if graph.is_sale(state, next):
+                transactions += 1
+                profit = profit + price
+
+            stack.append((next, profit, transactions, i + 1))
+
+    return max_profit
+
+
+class BuySellGraph:
+    DRY_POWDER = 'DRY_POWDER'
+    HOLDING = 'HOLDING'
+
+    def __init__(self):
+        self._graph = {
+            self.DRY_POWDER: [self.DRY_POWDER, self.HOLDING],
+            self.HOLDING: [self.HOLDING, self.DRY_POWDER]
+        }
+
+    def neighbors(self, state):
+        return self._graph.get(state)
+
+    def is_purchase(self, prev, next):
+        return prev is self.DRY_POWDER and next is self.HOLDING
+
+    def is_sale(self, prev, next):
+        return prev is self.HOLDING and next is self.DRY_POWDER
