@@ -237,6 +237,9 @@ def max_profit_two_transactions_dfs_stack(prices):
 
     return max_profit
 
+# Understanding:
+#   max
+# def max_profit_two_transactions_dp(prices):
 
 class BuySellGraph:
     DRY_POWDER = 'DRY_POWDER'

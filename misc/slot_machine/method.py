@@ -44,10 +44,10 @@ def minimum_wheel_construction(grid):
     grid_maximums = [0] * len(grid[0])
 
     for row in grid:
-        candidate = list(row)
-        candidate.sort()
+        candidates = list(row)
+        candidates.sort()
 
-        for j, digit in enumerate(candidate):
+        for j, digit in enumerate(candidates):
             grid_maximums[j] = max(grid_maximums[j], int(digit))
 
     return sum(grid_maximums)
