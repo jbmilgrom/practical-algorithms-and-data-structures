@@ -22,7 +22,7 @@ Instead, each process relies on the call stack to some extent (or stack data str
 #   Graph
 #       [L1, L2, ... LN] -> [L1, L2, ... LN-1]
 #   Depth first search in order to build up sentences one at time
-#   Backtrack on sentence in order to be able to track a single sentence at a time
+#   Backtrack on sentence in order to be able to track a single sentence at a time (constant space)
 
 def anagram_backtracking_word_and_visited(sentence):
     length, an_anagram, letters, results = len(sentence), '', Counter(sentence), []
