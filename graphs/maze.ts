@@ -4,7 +4,7 @@ const MAZE_1 = [
   [0, 5, 0, 0, 0],
   [0, 5, 0, 5, 0],
   [0, 0, 0, 5, 9],
-] as const;
+];
 
 type Maze = typeof MAZE_1;
 
@@ -65,8 +65,8 @@ const navigateMazeBFS = (maze: Maze): Cooridinate | undefined => {
     if (value === 5) {
       continue;
     }
+    
     const nextCoordinates = get3by3SquareAt(coordinate, [xBoundary, yBoundary]);
-
     for (const nextCoordinate of nextCoordinates) {
       queue.enqueue(nextCoordinate);
     }
