@@ -12,7 +12,7 @@ type Cooridinate = [number, number];
 
 type Visited = Set<string>;
 
-const navigateMaze = (maze: Maze) => {
+const navigateMaze = (maze: Maze): Cooridinate | undefined => {
   const visited: Visited = new Set();
   const xBoundary = maze[0].length;
   const yBoundary = maze.length;
